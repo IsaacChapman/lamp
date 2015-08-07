@@ -1,0 +1,5 @@
+hooks:
+  pre_setup: docker build -t isaacchapman/lamp:test .
+
+tests:
+  - docker run isaacchapman/lamp:test bash -c "cd /app && vendor/bin/phpunit -c tests/phpunit.xml"
