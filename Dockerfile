@@ -3,8 +3,14 @@ MAINTAINER Fernando Mayo <fernando@tutum.co>, Feng Honglin <hfeng@tutum.co>
 
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && \
-  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt && \
+RUN locale-gen en_US.UTF-8 && \
+  export LANG=en_US.UTF-8 && \
+  apt-get update && \
+  apt-get -y install software-properties-common && \
+  yes '' | add-apt-repository ppa:ondrej/php5-5.6 && \
+  apt-get -y update && \
+  apt-get -y install curl php5 php5-mhash php5-mcrypt php5-curl php5-cli php5-mysql php5-gd php5-intl php5-xsl supervisor git apache2 libapache2-mod-php5 mysql-server pwgen php-apc && \
+  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
   echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Add image configuration and scripts
