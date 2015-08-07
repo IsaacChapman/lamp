@@ -42,6 +42,9 @@ ADD composer.json /app/composer.json
 RUN cd /app && \
   composer install
 
+# Add tests
+ADD tests /app/tests
+
 #Enviornment variables to configure php
 ENV PHP_UPLOAD_MAX_FILESIZE 10M
 ENV PHP_POST_MAX_SIZE 10M
