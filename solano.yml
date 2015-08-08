@@ -2,4 +2,4 @@ hooks:
   pre_setup: docker build -t isaacchapman/lamp:test .
 
 tests:
-  - docker run isaacchapman/lamp:test bash -c "cd /app && vendor/bin/phpunit -c tests/phpunit.xml"
+  - docker run isaacchapman/lamp:test bash -c "/run_services.sh && cd /app && vendor/bin/phpunit -c tests/phpunit.xml"
